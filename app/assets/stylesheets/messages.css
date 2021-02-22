@@ -2,6 +2,11 @@
   display: flex;
 }
 
+
+
+
+
+/* ========== ここからサイドバー ========== */
 .side_bar {
   background-color: #253141;
   width: 300px;
@@ -11,14 +16,48 @@
 .side_bar_header {
   height: 100px;
   padding: 0 20px;
+  display: flex;
+  background-color: #253141;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header_left a {
+  font-size: 16px;
+  color: #FAFAFA;
+  text-decoration: none;
+}
+
+.header_right a {
+  font-size: 10px;
+  color: deepskyblue;
+  padding: 14px;
+  border: lightblue 1px solid;
+  text-decoration: none;
 }
 
 .rooms {
   background-color: #2F3E51;
   height: calc(100vh - 100px);
   padding: 0 20px;
+  overflow: scroll;
 }
 
+.room {
+  padding: 20px 0 40px;
+}
+
+.room_name a {
+  text-decoration: none;
+  color: white;
+}
+
+
+
+
+
+/* ========== ここからチャット画面 ========== */
 .chat {
  width: calc(100vw - 300px);
  background: #FFF;
