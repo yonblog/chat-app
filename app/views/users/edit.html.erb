@@ -1,13 +1,19 @@
 <div class='account-page' id='account-page'>
   <div class='account-page__inner clearfix'>
+    <%# ========== ここからアカウントの編集名 ========== %>
     <div class='account-page__inner--left account-page__header'>
       <h2>Edit Account</h2>
       <h5>アカウントの編集</h5>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'%>
+                              <%# ↑deviseのページで「ログアウトする」という意味。 %>
+                              <%# method: :delet(HTTPメソッドのdelete)を指定すると、ログイン時に使用されるdeviseのsessionsコントローラーのdestroyアクションが実行される。 %>
       <%= link_to "チャットページに戻る", :back, class: 'btn'%>
     </div>
+
+    <%# ========== ここから入力フォーム ========== %>
     <div class='account-page__inner--right user-form'>
       <%= form_with model: current_user, local: true do |f|%>
+                <%# ↑ここが「model」の場合はデータベースに保存するという意味。「current_user」はサインインしているユーザーの情報という意味。 %>
         <div class='field'>
           <div class='field-label'>
             <%= f.label :name%>
