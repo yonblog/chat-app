@@ -6,7 +6,8 @@
   </div>
   <div class="right-header">
     <div class="header-button">
-      <a href="#">チャットを終了する</a>
+      <%= link_to 'チャットを終了する', room_path(@room), method: :delete %>
+                                              <%# ↑@roomには「Room.find(params[:room_id])」が代入されている。※indexアクションに定義されている。 %>                                             
     </div>
   </div>
 </div>

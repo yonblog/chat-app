@@ -14,12 +14,8 @@
     <div class="room">
       <div class="room_name">
         <%= link_to room.name, room_messages_path(room) %>
+                                                <%# ↑パスにroomを引数とすることで、メッセージと紐付いているチャットルームのidを持たせることができる。 %>
       </div>
     </div>
   <% end %>
-  <div class="room">
-    <div class="room_name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
 </div>
