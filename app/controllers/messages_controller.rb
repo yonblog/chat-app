@@ -30,9 +30,9 @@ class MessagesController < ApplicationController
   private
   # ↑クラス外から呼び出すことのできないメソッドのこと。
   def message_params
-    params.require(:message).permit(:content).merge(user_id: current_user.id)
+    params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
             # ↑「require」はパラメーターからどの情報を受け取るかを選択する。
-            # ↑「permit」はrequireメソッドのより細部選択が可能になったメソッド。キー単位で選択できる。
+            # ↑「permit」はrequireメソッドのより細部選択が可能になったメソッド。キー単位で選択できる。今回はmessageテーブルのcontentとActive Storageテーブルのimageを選択している。
             # ↑「merge」はハッシュとハッシュを繋げるメソッド。
   end
 end
