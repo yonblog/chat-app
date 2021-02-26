@@ -16,6 +16,13 @@ class RoomsController < ApplicationController
     end
   end
 
+  def destroy
+    room = Room.find(params[:id])
+                    # ↑paramsには、roomテーブルのレコード(id,name,created_at,updated_at)が入っており、「params[:id]」とすることでroom_idが取得されている。
+    room.destroy
+    redirect_to root_path
+  end
+
   private
   def room_params
     params.require(:room).permit(:name, user_ids: [])
