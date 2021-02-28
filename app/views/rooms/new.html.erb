@@ -18,12 +18,21 @@
       </div>
       <div class='chat-room-form__field--right'>
       <select name="room[user_ids][]">
+            <%# ↑select要素のname属性に任意の値を指定することで、paramsを通して、その値をコントローラーへ渡すことができる。 %>
+                        <%# ↑「モデル名」＋「_ids」というキーを使用すると、例えばroomという親要素を保存するときに、user_idsで所属させたいユーザーを配列で指定すると、その情報が中間テーブルに保存される仕組みとなっている。 %>
         <option>チャットするユーザーを選択してください</option>
         <% User.where.not(id: current_user.id).each do |user| %>
+        <%# ↑「モデル名.where（"条件"）」と記述すると、条件に一致したレコードを配列として取得でき、このwhereメソッドに続けてnotメソッドを追記すると、条件に一致したレコード以外の値を配列として取得できる。  %>
           <option value=<%= user.id %>><%= user.name %></option>
+                <%# ↑ここのvalueの値が、select要素のname属性のroom[user_ids][]の[]に入り、paramsを通してコントローラーへ渡される。 %>
         <% end %>
       </select>
       <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
+      <%# ↑この記述は、「現在ログイン中のユーザーが持つidをparamsに含める」という記述。 %>
+      <%# ※type属性にhiddenを指定することで、画面上には表示されないinput要素を作成している。 %>
+                                                  <%# ↑value属性にはcurrent_user.idを指定しているため、room[user_ids]キーに対して、ログイン中ユーザーのidを配列として格納し、コントローラーへ送信する。 %>
+                                                  <%# ※ 結果、コントローラーに送られるparamsは ｛"room" => ｛"user_ids" => 「"選択したユーザーのid", "現在ログインしているユーザーのid"」｝｝ になる。 %>
+                                                  <%# ※ Railsでは、パラメーター名に[]をつけると、その値を配列で受け取る仕組みになっている。 %>
       </div>
     </div>
 
