@@ -14,11 +14,15 @@
 
 <div class="messages">
   <%= render partial: 'message', collection: @messages %>
-  <%# ↑「_message.html.erb」の「@messages」に含まれる情報を繰り返し表示するという意味。 %>
+                              <%# ↑ collectionオプションは、指定したインスタンス変数の中にある要素の数だけ、部分テンプレートが繰り返し表示されるオプション。 %>
+                              <%# ↑「_message.html.erb」の「@messages」に含まれる情報を繰り返し表示するという意味。 %>
+                              <%# ※ collectionオプションを使えば、インスタンスに入っている要素が複数あった場合でも、eachメソッドを使用せずにrenderで繰り返し表示できる。 %>
+                              <%# 今回の場合だと、@messagesを繰り返しの対象として指定することによって、@messagesの中にある複数の要素の数だけ、部分テンプレートを繰り返し呼び出している。 %>
 </div>
 
 <%= form_with model: [@room, @message], class: 'form', local: true do |f| %>
             <%# ↑データベースに保存する場合はmodelになる。※通常は「url: "パス"」 %>
+            <%# ※messagesのルーティングがroomsにネストされているため、チャットルームとメッセージとの間には、あるチャットルームに属しているメッセージ、という親子関係があるので@roomと@messageが必要。 %>
             <%# @roomには「指定のチャットルームのレコード情報」、@messageには「Messageモデルのからのインスタンス（Message.new）」を予めセットしておく。 %>
             <%# ※この場合は@roomには最初から「チャットルーム名」入っており、@messageには「入力されたコメント」がデータとして格納される。 %>
   <div class="form-input">

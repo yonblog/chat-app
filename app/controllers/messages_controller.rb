@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
   def create
     @room = Room.find(params[:room_id])
     @message = @room.messages.new(message_params)
-    # ↑チャットルームに紐付いたメッセージのインスタンスを生成している。※ルーティングのネストをしているからできる。
+    # ↑「親モデルのインスタンス.子モデルの複数形（小文字）.new」という記述方法で、チャットルームに紐付いたメッセージのインスタンスを生成している。※ルーティングのネストをしているからできる。
     if @message.save
       # ↑生成したインスタンスを@messageに代入し、saveメソッドでメッセージの内容をmessagesテーブルに保存している。
       redirect_to room_messages_path(@room)
